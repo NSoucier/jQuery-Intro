@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies App</title>
+    <style>
+        body {
+            background: linear-gradient(0.25turn, #49b6e5, #ebf8e1, #9d3ec0);
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Ratings App 🎥</h1>
+
+
+    <form>
+        <input type="text" id="title" placeholder="Enter movie title">
+        <input type="number" id="rating" max="10" placeholder="Rating out of 10">
+        <input type="submit" id="submit">
+    </form>
+
+    <ul id="movieList">
+
+    </ul>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $('#submit').on('click', function(e) { // adds movie and rating to list
+            e.preventDefault();
+            if ($('#title').val().length >= 2 && $('#rating').val() <= 10) { // ensures title is present and rating is 0-10
+                $('ul').append(`<li>${$('#title').val()}: ${$('#rating').val()}/10 <input type="submit" value="Remove" id="remove"></li>`);
+            } else {
+                alert('Please enter a title greater than two characters and rating value between 0-10!')
+            }
+        });
+
+        $('body').on('click', '#remove', function(e) { // removes title when 'remove' button is clicked
+            $(this.parentElement).remove();
+        });
+
+    </script>
+</body>
+</html>
